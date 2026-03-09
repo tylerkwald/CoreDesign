@@ -1,0 +1,34 @@
+     PIN_POWER    F
+ comp_num   1    !GUIDE TUBE
+ comp_num   2    !FISSION CHAMBER
+ comp_num   3    !CORNER REFLECTOR
+ comp_num   4    !FUEL 2 UO2
+ comp_num   5    !FUEL 2 MOX1
+ comp_num   6    !FUEL 3 MOX2
+ comp_num   7    !FUEL 4 MOX3
+ comp_num   8    !UO2 - HOMOGENIZED
+ comp_num   9    !MOX - HOMOGENIZED
+ comp_num   10   !AIC Burnable Absorber
+ comp_num   11   !BP Assembly
+ delcr_comp 1   1 -5  7 -11  !compostions that this set applies
+ delcr_comp 2   6                      !compostions that this set applies
+ kin_comp   1  1 -11    !Compostions that this set applies
+ geo_dim   3 3 1              !nasyx,nasyy,nz
+ rad_conf
+ 2 2 1
+ 2 2 1
+ 1 1 1
+ grid_x     3*21.42  ! 3 fuel assemby de 21.42 cm
+ neutmesh_x 3*50  ! 50 mesh in ogni fuel assembly
+ grid_y     3*21.42
+ neutmesh_y 3*50
+ Planar_Reg 1
+ 8 9 3
+ 9 8 3
+ 3 3 3
+ bank_conf
+ pincal_loc
+ npin_side  17                 ! npin
+ pff_comp 1  1 -8              ! compositions that the following set applies (UO2)
+ pff_comp 2  9                 ! compositions that the following set applies (UO2)
+ pff_comp 3  10 -11             ! compositions that the following set applies (UO2)
