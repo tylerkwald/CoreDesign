@@ -10,7 +10,7 @@ def extract_and_plot_power(file_path):
     # Locate the "Average Planar Power Distribution" table
     # This regex looks for the header and then captures the subsequent rows of data
     pattern = re.compile(
-        r"Assembly Power Distribution.*?box power\s+1\s+2\s+3\s+4\s+5\s+6\s+7\s+8(.*?)(?=Maximum Pos)", 
+        r"Planar Power Distribution at Plane          14.*?box power\s+1\s+2\s+3\s+4\s+5\s+6\s+7\s+8(.*?)(?=Maximum Pos)", 
         re.DOTALL
     )
     
@@ -61,7 +61,7 @@ def extract_and_plot_power(file_path):
 
     plt.tight_layout()
     output_folder = 'images'
-    file_name = 'planar_power_distribution.png'
+    file_name = 'planar_power_distribution_14.png'
 
     # Create the full path
     save_path = os.path.join(output_folder, file_name)
