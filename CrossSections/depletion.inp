@@ -12,16 +12,16 @@ CNTL
       th_fdbk      T
       search       ppm
 !      pin_power    T
-      transient    T
+      transient    F
       depletion    T 1.0e-5
 !                TREE,nset,adf,xes,ene,j1f,chi,chd,vel,det,yld,cdf,gff,bet,lam,dht
       tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F
 !                    input  iteration     planar                   adj
 !                     edit      table      power        pin       reac
-      print_opt          F          T          T          F          T
+      print_opt          T          T          F          F          T
 !                     fdbk       flux     planar
 !                      rho    precurs       flux         Xe        T/H
-      print_opt          T          F          T          F          T
+      print_opt          T          F          F          F          T
 
 !******************************************************************************
 PARAM
@@ -199,7 +199,7 @@ TRAN
 DEPL
  INP_HST   '.\EXPOSURE_MAP.BOC3D'  1 1
  INP_OPT   F  F  F F        !PPM,CRP,THS,XESM
- TIME_STP  5*1. 12*30.  3*30. 5. 5*1. 
+ TIME_STP  5*1. 12*30.  3*30. 5. 4*1. 
 !Index    PMAXS File Name	   Branch_structure
  PMAXS_F  1        '.\PMAX\PMAXS_OECD_UOX42_2g.v600'      1
  PMAXS_F  2        '.\PMAX\PMAXS_OECD_UOX45_2g.v600'      1
@@ -207,7 +207,7 @@ DEPL
  PMAXS_F  4        '.\PMAX\PMAXS_OECD_MOX43_2g.v600'      1
  PMAXS_F  5        '.\PMAX\PMAXS_OECD_REFL_2g.v600'       2
  PMAXS_F  6        '.\PMAX\PMAXS_OECD_REFL_2g.v600'       2
-! HST_OPT   F  F  F  F  F !HCR HMD HSB HTF HTM
+  HST_OPT   T T T T T !HCR HMD HSB HTF HTM
   OUT_OPT   T  T   F F F      !POW,HST,THS,XESM XS
   BANK_NR   10*1             !number of control rods in each bank
   EXCL_BLK  0  0          !Top, Bottom blank lays
@@ -215,5 +215,11 @@ DEPL
 PLOT
  XTYPE    0   0   500.
  XY   ppmrho  01082 0 1660.0   1   1
+ XY   tfuel   10015 0 500.0    2   1
+ XY   tfuel   10025 0 500.0    2   2
+ XY   tfuel   10084 0 500.0    2   3
+ XY   tfuel   10097 0 500.0    2   4
+
+
 !     file .\plots.plc
 . 
