@@ -28,30 +28,30 @@ CNTL
 !******************************************************************************
 PARAM
 ! Basic Iteration Control Parameters
-      n_iters    10 500                     !ninmax, noutmax
+ n_iters    10 500                     !ninmax, noutmax
 
 ! Convergence Criteria
-      conv_ss    1.e-7 1.e-6 1.e-6 0.01      !epseig,epsl2,epslinf,epstf
+ conv_ss    1.e-7 1.e-6 1.e-6 0.01      !epseig,epsl2,epslinf,epstf
 
 ! Nonlinear Update Control
-      eps_anm    1.0e-15
+  eps_anm    1.0e-15
 
 ! Nonlinear Update Cycle
-      nlupd_ss   4     4     1             !nupdcy, ninitout, nmulth
-      nodal_kern HYBRID
+ nlupd_ss   4     4     1             !nupdcy, ninitout, nmulth
+ nodal_kern HYBRID
 !******************************************************************************
 
 DEPL 
- inp_hst '.\BurnUpHistory\EXPOSURE_MAP.BOC3D' 1 1
+ inp_hst '.\EXPOSURE_MAP.BOC3D' 1 1
  inp_opt    F  F  F  F      ! PPM,CRP, THS, XESH
  time_stp   5*1.0 12*30.0 3*3.0
 ! Index     PMAXS File Name
- PMAXS_F 1     '.\CrossSectionFuels\PMAXS_OECD_UOX42_2g.v600'     1
- PMAXS_F 2     '.\CrossSectionFuels\PMAXS_OECD_UOX45_2g.v600'     1
- PMAXS_F 3     '.\CrossSectionFuels\PMAXS_OECD_MOX40_2g.v600'     1
- PMAXS_F 4     '.\CrossSectionFuels\PMAXS_OECD_MOX43_2g.v600'     1
- PMAXS_F 5     '.\CrossSectionFuels\PMAXS_OECD_REFL_2g.v600'      2
- PMAXS_F 6     '.\CrossSectionFuels\PMAXS_OECD_REFL_2g.v600'      2
+ PMAXS_F 1     '.\PMAX\PMAXS_OECD_UOX42_2g.v600'     1
+ PMAXS_F 2     '.\PMAX\PMAXS_OECD_UOX45_2g.v600'     1
+ PMAXS_F 3     '.\PMAX\PMAXS_OECD_MOX40_2g.v600'     1
+ PMAXS_F 4     '.\PMAX\PMAXS_OECD_MOX43_2g.v600'     1
+ PMAXS_F 5     '.\PMAX\PMAXS_OECD_REFL_2g.v600'      2
+ PMAXS_F 6     '.\PMAX\PMAXS_OECD_REFL_2g.v600'      2
 
  Out_OPT   T  T   F  F  F   ! POW, HST, THS, XESM, XS
  HST_OPT  T  T  T  T  T
@@ -117,22 +117,39 @@ GEOM
 
  rad_conf
  0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0
- 0 0 1 1 1 7*2 3*1 0 0
- 0 1 1 11*2 1 1 0
- 0 1 13*2 1 0
- 1 1 13*2 1 1
- 1 15*2 1
- 1 15*2 1
- 1 15*2 1
- 1 15*2 1
- 1 15*2 1
- 1 15*2 1
- 1 15*2 1
- 1 1 13*2 1 1
- 0 1 13*2 1 0
- 0 1 1 11*2 1 1 0
- 0 0 1 1 1 7*2 3*1 0 0
+ 0 0 1 1 1 2 2 2 2 2 2 2 1 1 1 0 0
+ 0 1 1 2 2 2 2 2 2 2 2 2 2 2 1 1 0
+ 0 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 0
+ 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1
+ 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 1
+ 0 1 2 2 2 2 2 2 2 2 2 2 2 2 2 1 0
+ 0 1 1 2 2 2 2 2 2 2 2 2 2 2 1 1 0
+ 0 0 1 1 1 2 2 2 2 2 2 2 1 1 1 0 0
  0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0
+!  0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0
+!  0 0 1 1 1 7*2 3*1 0 0
+!  0 1 1 11*2 1 1 0
+!  0 1 13*2 1 0
+!  1 1 13*2 1 1
+!  1 15*2 1
+!  1 15*2 1
+!  1 15*2 1
+!  1 15*2 1
+!  1 15*2 1
+!  1 15*2 1
+!  1 15*2 1
+!  1 1 13*2 1 1
+!  0 1 13*2 1 0
+!  0 1 1 11*2 1 1 0
+!  0 0 1 1 1 7*2 3*1 0 0
+!  0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0
 
 
  grid_x     17*21.42  ! 9 fuel assemby de 20 cm
@@ -187,25 +204,25 @@ GEOM
 !          b_dist step_size num_steps 
  cr_axinfo  21.24  3.657621 
  bank_conf 
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-  0  0  0  0  8  0  2  0  3  0  2  0  8  0  0  0  0
-  0  0  0  0  0  7  0  6  0  6  0  7  0  0  0  0  0
-  0  0  8  0  4  0  0  0  5  0  0  0  4  0  8  0  0
-  0  0  0  7  0  0  0  0  0  0  0  0  0  7  0  0  0
-  0  0  2  0  0  0  3  0  1  0  3  0  0  0  2  0  0
-  0  0  0  6  0  0  0  0  0  0  0  0  0  6  0  0  0
-  0  0  3  0  5  0  1  0  4  0  1  0  5  0  3  0  0
-  0  0  0  6  0  0  0  0  0  0  0  0  0  6  0  0  0
-  0  0  2  0  0  0  3  0  1  0  9  0  0  0  2  0  0
-  0  0  0  7  0  0  0  0  0  0  0  0  0  7  0  0  0
-  0  0  8  0  4  0  0  0  5  0  0  0  10 0  8  0  0
-  0  0  0  0  0  7  0  6  0  6  0  7  0  0  0  0  0
-  0  0  0  0  8  0  2  0  3  0  2  0  8  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  8  0  2  0  3  0  2  0  8  0  0  0  0
+ 0  0  0  0  0  7  0  6  0  6  0  7  0  0  0  0  0
+ 0  0  8  0  4  0  0  0  5  0  0  0  4  0  8  0  0
+ 0  0  0  7  0  0  0  0  0  0  0  0  0  7  0  0  0
+ 0  0  2  0  0  0  3  0  1  0  3  0  0  0  2  0  0
+ 0  0  0  6  0  0  0  0  0  0  0  0  0  6  0  0  0
+ 0  0  3  0  5  0  1  0  4  0  1  0  5  0  3  0  0
+ 0  0  0  6  0  0  0  0  0  0  0  0  0  6  0  0  0
+ 0  0  2  0  0  0  3  0  1  0  9  0  0  0  2  0  0
+ 0  0  0  7  0  0  0  0  0  0  0  0  0  7  0  0  0
+ 0  0  8  0  4  0  0  0  5  0  0  0  10 0  8  0  0
+ 0  0  0  0  0  7  0  6  0  6  0  7  0  0  0  0  0
+ 0  0  0  0  8  0  2  0  3  0  2  0  8  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
 
- !************************************************************
+!************************************************************
 
 TH
 
@@ -232,4 +249,4 @@ TH
  THmesh_y   17*1
 ! THmesh_z   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 
 
- .
+.
