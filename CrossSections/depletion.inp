@@ -12,16 +12,16 @@ CNTL
       th_fdbk      T
       search       ppm
 !      pin_power    T
-      transient    F
+      transient    T
       depletion    T 1.0e-5
 !                TREE,nset,adf,xes,ene,j1f,chi,chd,vel,det,yld,cdf,gff,bet,lam,dht
       tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F
 !                    input  iteration     planar                   adj
 !                     edit      table      power        pin       reac
-      print_opt          F          T          F          F          T
+      print_opt          F          T          T          F          T
 !                     fdbk       flux     planar
 !                      rho    precurs       flux         Xe        T/H
-      print_opt          T          F          F          F          F
+      print_opt          T          F          T          F          T
 
 !******************************************************************************
 PARAM
@@ -213,6 +213,7 @@ DEPL
   EXCL_BLK  0  0          !Top, Bottom blank lays
 !******************************************************************************
 PLOT
- 
+ XTYPE    0   0   500.
+ XY   ppmrho  01082 0 1660.0   1   1
 !     file .\plots.plc
 . 
