@@ -1,5 +1,5 @@
       core_type    PWR
-      transient    F
+      transient    T
       depletion    T 1.0e-5
       tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F
       nodal_kern hybrid
@@ -71,6 +71,7 @@
       thmesh_x     17*1                       !Number of T/H Nodes per FA in X-dir
       thmesh_y     17*1                       !Number of T/H Nodes per FA in y-dir
       thmesh_z     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 !23  !junction locations
+      move_bank   10    0.    0.    0.1   100
  PMAXS_F  1        '.\PMAX\PMAXS_OECD_UOX42_2g.v600'      1
  PMAXS_F  2        '.\PMAX\PMAXS_OECD_UOX45_2g.v600'      1
  PMAXS_F  3        '.\PMAX\PMAXS_OECD_MOX40_2g.v600'      1
