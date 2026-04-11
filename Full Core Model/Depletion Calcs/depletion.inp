@@ -197,16 +197,16 @@ TRAN
 !******************************************************************************
 
 DEPL
- INP_HST   '.\EXPOSURE_MAP.BOC3D'  1 1
+ INP_HST   '..\EXPOSURE_MAP.BOC3D'  1 1
  INP_OPT   F  F  F F        !PPM,CRP,THS,XESM
  TIME_STP  5*1. 12*30.  3*30. 5. 4*1. 
 !Index    PMAXS File Name	   Branch_structure
- PMAXS_F  1        '.\PMAX\PMAXS_OECD_UOX42_2g.v600'      1
- PMAXS_F  2        '.\PMAX\PMAXS_OECD_UOX45_2g.v600'      1
- PMAXS_F  3        '.\PMAX\PMAXS_OECD_MOX40_2g.v600'      1
- PMAXS_F  4        '.\PMAX\PMAXS_OECD_MOX43_2g.v600'      1
- PMAXS_F  5        '.\PMAX\PMAXS_OECD_REFL_2g.v600'       2
- PMAXS_F  6        '.\PMAX\PMAXS_OECD_REFL_2g.v600'       2
+ PMAXS_F  1        '..\PMAX\PMAXS_OECD_UOX42_2g.v600'      1
+ PMAXS_F  2        '..\PMAX\PMAXS_OECD_UOX45_2g.v600'      1
+ PMAXS_F  3        '..\PMAX\PMAXS_OECD_MOX40_2g.v600'      1
+ PMAXS_F  4        '..\PMAX\PMAXS_OECD_MOX43_2g.v600'      1
+ PMAXS_F  5        '..\PMAX\PMAXS_OECD_REFL_2g.v600'       2
+ PMAXS_F  6        '..\PMAX\PMAXS_OECD_REFL_2g.v600'       2
   HST_OPT   T T T T T !HCR HMD HSB HTF HTM
   OUT_OPT   T  T   F F F      !POW,HST,THS,XESM XS
   BANK_NR   10*1             !number of control rods in each bank
