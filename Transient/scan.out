@@ -1,6 +1,6 @@
       core_type    PWR
       transient    T
-      depletion    T 1.0e-5
+      depletion    T !T 1.0e-5
       tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F
       nodal_kern hybrid
  geo_dim   17  17 22  1 1           !nasyx,nasyy,nz

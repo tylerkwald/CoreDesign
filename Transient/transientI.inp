@@ -1,6 +1,6 @@
 
 !******************************************************************************
-CASEID transientIEOL
+CASEID transientIBOL
 !******************************************************************************
 CNTL
       core_type    PWR
@@ -199,7 +199,7 @@ TRAN
 !******************************************************************************
 
 DEPL
- INP_HST   '.\transientIDep.dep'  1 26
+ INP_HST   '.\transientIDep.dep'  1 4
  INP_OPT   T  T  F T        !PPM,CRP,THS,XESM
 ! TIME_STP  5*1. 12*30.  3*30. 5. 4*1. 
 !Index    PMAXS File Name	   Branch_structure
