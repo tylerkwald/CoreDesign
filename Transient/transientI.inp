@@ -1,6 +1,6 @@
 
 !******************************************************************************
-CASEID transientI
+CASEID transientIEOL
 !******************************************************************************
 CNTL
       core_type    PWR
@@ -13,7 +13,7 @@ CNTL
       search       ppm
 !      pin_power    T
       transient    T
-      depletion    T 1.0e-5
+      depletion    T !T 1.0e-5
 !                TREE,nset,adf,xes,ene,j1f,chi,chd,vel,det,yld,cdf,gff,bet,lam,dht
       tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F
 !                    input  iteration     planar                   adj
@@ -199,9 +199,9 @@ TRAN
 !******************************************************************************
 
 DEPL
- INP_HST   '.\EXPOSURE_MAP.BOC3D'  1 1
- INP_OPT   F  F  F F        !PPM,CRP,THS,XESM
- TIME_STP  5*1. 12*30.  3*30. 5. 4*1. 
+ INP_HST   '.\transientIDep.dep'  1 26
+ INP_OPT   T  T  F T        !PPM,CRP,THS,XESM
+! TIME_STP  5*1. 12*30.  3*30. 5. 4*1. 
 !Index    PMAXS File Name	   Branch_structure
  PMAXS_F  1        '.\PMAX\PMAXS_OECD_UOX42_2g.v600'      1
  PMAXS_F  2        '.\PMAX\PMAXS_OECD_UOX45_2g.v600'      1
@@ -214,11 +214,11 @@ DEPL
   BANK_NR   10*1             !number of control rods in each bank
   EXCL_BLK  0  0          !Top, Bottom blank lays
 !******************************************************************************
-PLOT
-   XTYPE    0   0   .5
-!  XY   ppmrho  01082 0 1660.0   1   1
-   XY   tfuel   10015 200 800.0    2   1
-   XY   tfuel   10025 200 800.0    2   2
-   XY   tfuel   10084 200 800.0    2   3
-   XY   tfuel   10097 200 800.0    2   4
+! PLOT
+!    XTYPE    0   0   .5
+! !  XY   ppmrho  01082 0 1660.0   1   1
+!    XY   tfuel   10015 200 800.0    2   1
+!    XY   tfuel   10025 200 800.0    2   2
+!    XY   tfuel   10084 200 800.0    2   3
+!    XY   tfuel   10097 200 800.0    2   4
 . 
