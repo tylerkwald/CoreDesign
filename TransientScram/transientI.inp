@@ -1,0 +1,225 @@
+
+!******************************************************************************
+CASEID transientIMOL15s
+!******************************************************************************
+CNTL
+      core_type    PWR
+      core_power   100.0e-0 !in %
+      ppm          1000.0
+!bank              1-A   2-B   3-C   4-D   5-SA  6-SB  7-SC  8-SD 9-(C,3) 10-(E,5)
+      bank_pos     100.  100.  100.  100.  100.  100.  100.  100.  100.  100.
+!     bank_pos       0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+      th_fdbk      T
+      search       ppm
+!      pin_power    T
+      transient    T
+      depletion    T !T 1.0e-5
+!                TREE,nset,adf,xes,ene,j1f,chi,chd,vel,det,yld,cdf,gff,bet,lam,dht
+      tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F
+!                    input  iteration     planar                   adj
+!                     edit      table      power        pin       reac
+      print_opt          T          T          F          F          T
+!                     fdbk       flux     planar
+!                      rho    precurs       flux         Xe        T/H
+      print_opt          T          F          F          F          T
+
+!******************************************************************************
+PARAM
+! Basic Iteration Control Parameters
+      n_iters    1 500                     !ninmax, noutmax
+
+! Convergence Criteria
+      conv_ss    1.e-7 1.e-5 1.e-5 0.001     !epseig,epsl2,epslinf,epstf
+
+! Wielandt Shift Control
+      wielandt   0.04 0.1  1.0             !eshift,eshift0,targetk
+!      wielandt   100.  100.  1.0              !eshift,eshift0,targetk
+
+! Nonlinear Update Control
+      nodal_kern hybrid
+!      nodal_kern nemmg
+!      nspn       3
+!      nlupd_ss   3 3 1                   !nupdcy,ninitout,nmulth
+      eps_anm    1.e-6  !ans stabilization criteria
+      eps_erf    0.001
+
+! Decusping
+      decusp     0                         !flux wieghting only
+!******************************************************************************
+XSEC
+!     group_spec 4 2
+!     ref_cond   1000.0  306.85 0.71187 626.85  !ppm, Tm in C, rho in gm/cc, Tf in C
+      ref_cond   1000.0  286.85 0.75206 286.85  !HZP
+!     ref_cond   1000.0  300.00 0.7     626.85  !def   
+
+!     file PARCS.XSEC
+!     file ANM_FUEL_XS
+!     file ANM_REFL_XS
+!******************************************************************************
+!FMFD
+!      group_spec   2  1        !ng, last fast group
+!      geninf       17 1  1  1  !npins, nrefine, mmz, meshth
+!      method       1  3        !npn, naccel (1/2=CMR/CMFD)
+!      ref_cond   1000.0  306.85 0.71187 626.85 !ppm, Tm in C, rho in gm/cc, Tf in C
+!      buckling   0.0
+!      file ..\FMFD_HET_FUEL_MAP
+!      file ..\FMFD_HET_REFL_MAP
+!      file ..\FMFD_HOM_XS
+!******************************************************************************
+GEOM
+ geo_dim   17  17 22  1 1           !nasyx,nasyy,nz     
+ rad_conf
+!101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+   0   0   0   0   1   1   1   1   1   1   1   1   1   0   0   0   0
+   0   0   1   1   1   2   2   2   2   2   2   2   1   1   1   0   0  !1
+   0   1   1   2   2   2   2   2   2   2   2   2   2   2   1   1   0  !1
+   0   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0  !2
+   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   1  !1
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !3
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !2
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !1
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !0
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !1
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !2
+   1   2   2   2   2   2   2   2   2   2   2   2   2   2   2   2   1  !3
+   1   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   1  !1
+   0   1   2   2   2   2   2   2   2   2   2   2   2   2   2   1   0  !2
+   0   1   1   2   2   2   2   2   2   2   2   2   2   2   1   1   0  !1
+   0   0   1   1   1   2   2   2   2   2   2   2   1   1   1   0   0  !1
+   0   0   0   0   1   1   1   1   1   1   1   1   1   0   0   0   0
+ grid_x     17*21.42
+ neutmesh_x 17*1
+ grid_y     17*21.42
+ neutmesh_y 17*1
+ grid_z     21.42 20*18.288 21.42
+ boun_cond  1 1  1 1 1 1       !ibcw,ibce,ibcn,ibcs,ibcb,ibct
+ Planar_Reg 1
+!117 116 115 114 113 112 111 110 109 110 111 112 113 114 115 116 117
+                 5   6   6   6   6   6   6   6   5
+         5   6   5   2   4   2   1   2   4   2   5   6   5
+     5   5   2   1   4   2   3   2   3   2   4   1   2   5   5      !7
+     5   2   4   2   2   4   1   4   1   4   2   2   4   2   5      !6
+ 5   5   1   2   1   1   1   1   2   1   1   1   1   2   1   5   5  !5
+ 5   2   4   2   1   3   1   3   2   3   1   3   1   2   4   2   5  !4
+ 5   4   2   4   1   1   1   2   1   2   1   1   1   4   2   4   5  !3
+ 5   2   3   1   1   3   2   1   1   1   2   3   1   1   3   2   5  !2
+ 5   1   2   4   2   2   1   1   1   1   1   2   2   4   2   1   5  !CL
+ 5   2   3   1   1   3   2   1   1   1   2   3   1   1   3   2   5  !2
+ 5   4   2   4   1   1   1   2   1   2   1   1   1   4   2   4   5  !3
+ 5   2   4   2   1   3   1   3   2   3   1   3   1   2   4   2   5  !4
+ 5   5   1   2   1   1   1   1   2   1   1   1   1   2   1   5   5  !5
+     5   2   4   2   2   4   1   4   1   4   2   2   4   2   5      !6
+     5   5   2   1   4   2   3   2   3   2   4   1   2   5   5      !7
+         5   6   5   2   4   2   1   2   4   2   5   6   5  
+                 5   6   6   6   6   6   6   6   5
+ Planar_Reg 2
+!117 116 115 114 113 112 111 110 109 110 111 112 113 114 115 116 117
+                 5   6   6   6   6   6   5   6   5
+         5   5   5   5   5   5   5   5   5   5   5   6   5
+     5   5   5   5   5   5   5   5   5   5   5   5   5   5   5      !7
+     5   5   5   5   5   5   5   5   5   5   5   5   5   5   5      !6
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !5
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !4
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !3
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !2
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !CL
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !2
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !3
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !4
+ 5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5   5  !5
+     5   5   5   5   5   5   5   5   5   5   5   5   5   5   5      !6
+     5   5   5   5   5   5   5   5   5   5   5   5   5   5   5      !7
+         5   5   5   5   5   5   5   5   5   5   5   6   5  
+                 5   6   6   6   6   6   5   5   5
+ PR_Assign  2 20*1 2
+ cr_axinfo 21.42 3.6576    !fully inserted position and step size
+!101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+ bank_conf
+                   0   0   0   0   0   0   0   0   0
+           0   0   0   0   0   0   0   0   0   0   0   0   0
+       0   0   0   8   0   2   0   3   0   2   0   8   0   0   0
+       0   0   0   0   7   0   6   0   6   0   7   0   0   0   0
+   0   0   8   0   4   0   0   0   5   0   0   0   4   0   8   0   0
+   0   0   0   7   0   0   0   0   0   0   0   0   0   7   0   0   0
+   0   0   2   0   0   0   3   0   1   0   3   0   0   0   2   0   0
+   0   0   0   6   0   0   0   0   0   0   0   0   0   6   0   0   0
+   0   0   3   0   5   0   1   0   4   0   1   0   5   0   3   0   0
+   0   0   0   6   0   0   0   0   0   0   0   0   0   6   0   0   0
+   0   0   2   0   0   0   3   0   1   0   9   0   0   0   2   0   0
+   0   0   0   7   0   0   0   0   0   0   0   0   0   7   0   0   0
+   0   0   8   0   4   0   0   0   5   0   0   0  10   0   8   0   0
+       0   0   0   0   7   0   6   0   6   0   7   0   0   0   0
+       0   0   0   8   0   2   0   3   0   2   0   8   0   0   0
+           0   0   0   0   0   0   0   0   0   0   0   0   0
+                   0   0   0   0   0   0   0   0   0
+
+! pincal_loc 
+!101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117
+!!!!                  0   0   0   0   0   0   0   0   0
+!!!!          0   0   0   1   1   1   1   1   1   1   0   0   0
+!!!!      0   0   1   1   1   1   1   1   1   1   1   1   1   0   0
+!!!!      0   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   0   1   1   1   1   1   1   1   1   1   1   1   1   1   0   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!  0   0   1   1   1   1   1   1   1   1   1   1   1   1   1   0   0
+!!!!      0   1   1   1   1   1   1   1   1   1   1   1   1   1   0
+!!!!      0   0   1   1   1   1   1   1   1   1   1   1   1   0   0
+!!!!          0   0   0   1   1   1   1   1   1   1   0   0   0
+!!!!                  0   0   0   0   0   0   0   0   0
+
+!******************************************************************************
+TH
+!      UNIF_TH  0.71187  626.85 306.85  !HFP average
+       UNIF_TH  0.75206  286.85 286.85  !HZP
+!      UNIF_TH  0.7      626.85 300.00  !default
+
+      n_pingt      264 25                     !npin,ngt
+      fa_powpit    18.4715   21.42            !assembly power(Mw) and pitch(cm)
+      pin_dim      3.951 4.583 0.573 6.032    !pin radii, rs,rw,tw, and rgt in mm
+      flow_cond    286.85 82.12102            !tin,cmfrfa(Kg/sec)
+      gamma_frac   0.00                       !direc heating fraction
+      hgap         10000.                     !hgap(w/M^2-C)
+      n_ring       10                         !number of meshes in pellet
+      thmesh_x     17*1                       !Number of T/H Nodes per FA in X-dir
+      thmesh_y     17*1                       !Number of T/H Nodes per FA in y-dir
+      thmesh_z     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 !23  !junction locations
+!******************************************************************************
+TRAN
+      time_step   100   0.05  1     5
+!      move_bank   10    0.    0.    0.1   100
+      scram       T     100   0.1   1.5   0
+!      time_step    0.5 0.005 0.1 0.2  !tend,delt0,tswitch,texpand
+!      move_bank    10  0.0 0.0   0.1 100.0
+
+!******************************************************************************
+
+DEPL
+ INP_HST   '.\transientIDep.dep'  1 14
+ INP_OPT   T  T  F T        !PPM,CRP,THS,XESM
+! TIME_STP  5*1. 12*30.  3*30. 5. 4*1. 
+!Index    PMAXS File Name	   Branch_structure
+ PMAXS_F  1        '.\PMAX\PMAXS_OECD_UOX42_2g.v600'      1
+ PMAXS_F  2        '.\PMAX\PMAXS_OECD_UOX45_2g.v600'      1
+ PMAXS_F  3        '.\PMAX\PMAXS_OECD_MOX40_2g.v600'      1
+ PMAXS_F  4        '.\PMAX\PMAXS_OECD_MOX43_2g.v600'      1
+ PMAXS_F  5        '.\PMAX\PMAXS_OECD_REFL_2g.v600'       2
+ PMAXS_F  6        '.\PMAX\PMAXS_OECD_REFL_2g.v600'       2
+  HST_OPT   F F F F F !HCR HMD HSB HTF HTM
+  OUT_OPT   F  F   F F F      !POW,HST,THS,XESM XS
+  BANK_NR   10*1             !number of control rods in each bank
+  EXCL_BLK  0  0          !Top, Bottom blank lays
+!******************************************************************************
+! PLOT
+!    XTYPE    0   0   .5
+! !  XY   ppmrho  01082 0 1660.0   1   1
+!    XY   tfuel   10015 200 800.0    2   1
+!    XY   tfuel   10025 200 800.0    2   2
+!    XY   tfuel   10084 200 800.0    2   3
+!    XY   tfuel   10097 200 800.0    2   4
+. 
