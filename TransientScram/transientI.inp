@@ -1,6 +1,6 @@
 
 !******************************************************************************
-CASEID transientIMOL05s
+CASEID transientMOL1sDH
 !******************************************************************************
 CNTL
       core_type    PWR
@@ -11,6 +11,8 @@ CNTL
 !     bank_pos       0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
       th_fdbk      T
       search       ppm
+      decay_heat   T
+
 !      pin_power    T
       transient    T
       depletion    T !T 1.0e-5
@@ -193,7 +195,7 @@ TH
 TRAN
       time_step   100   0.05  1     4
 !      move_bank   10    0.    0.    0.1   100
-      scram       T     100   0.1   0.5   0
+      scram       T     99   0.1   1.   0
 !      time_step    0.5 0.005 0.1 0.2  !tend,delt0,tswitch,texpand
 !      move_bank    10  0.0 0.0   0.1 100.0
 
