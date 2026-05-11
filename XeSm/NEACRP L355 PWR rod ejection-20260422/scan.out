@@ -1,0 +1,73 @@
+      transient    T
+      xe_sm        1 0
+ geo_dim   9 9 18             !nasyx,nasyy,nz
+ rad_conf
+ 2 2 2 2 2 2 2 2 1
+ 2 2 2 2 2 2 2 2 1
+ 2 2 2 2 2 2 2 1 1
+ 2 2 2 2 2 2 2 1 0
+ 2 2 2 2 2 2 1 1 0
+ 2 2 2 2 2 1 1 0 0
+ 2 2 2 2 1 1 0 0 0
+ 2 2 1 1 1 0 0 0 0
+ 1 1 1 0 0 0 0 0 0
+ grid_x     10.803   8*21.606
+ neutmesh_x 1        8*2
+ grid_y     10.803   8*21.606
+ neutmesh_y 1        8*2
+ Planar_Reg 1
+ 1  1  1  1  1  1  1  1  2
+ 1  1  1  1  1  1  1  1  2
+ 1  1  1  1  1  1  1  3  2
+ 1  1  1  1  1  1  1  2
+ 1  1  1  1  1  1  3  2
+ 1  1  1  1  1  3  2
+ 1  1  1  1  3  2
+ 1  1  3  2  2
+ 2  2  2
+ Planar_Reg 2
+ 4  5  4  5  4  5  4  6  2
+ 5  4  5  4  5  4  6  6  2
+ 4  5  4  5  4  5  6  3  2
+ 5  4  5  4  5  6  6  2
+ 4  5  4  5  4  6  3  2
+ 5  4  5  6  6  3  2
+ 4  6  6  6  3  2
+ 6  6  3  2  2
+ 2  2  2
+ Planar_Reg 3
+ 4  9  4  9  4  7  4  6  2
+ 9  4  8  4  8  4 11  6  2
+ 4  8  4  8  4  8  6  3  2
+ 9  4  8  4  8 10  6  2
+ 4  8  4  8  4  6  3  2
+ 7  4  8 10  6  3  2
+ 4 11  6  6  3  2
+ 6  6  3  2  2
+ 2  2  2
+ bank_conf
+ pincal_loc
+      fa_powpit    17.67516   21.606          !assembly power(Mw) and pitch(cm)
+      n_ring       10                         !number of meshes in pellet
+      thmesh_x     1   8*2                    !Number of T/H Nodes per FA in X-dir
+      thmesh_y     1   8*2                    !Number of T/H Nodes per FA in y-dir
+      thmesh_z     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  !junction locations
+ comp_num   1    !interior reflector
+ comp_num   2    !exterior reflector
+ comp_num   3    !corner reflector
+ comp_num   4    !fuel 1
+ comp_num   5    !fuel 2
+ comp_num   6    !fuel 3
+ comp_num   7    !fuel 4
+ comp_num   8    !fuel 5
+ comp_num   9    !fuel 6
+ comp_num  10    !fuel 7
+ comp_num  11    !fuel 8
+ delcr_comp 1   1 -5  7 -11  !compostions that this set applies
+ delcr_comp 2   6                      !compostions that this set applies
+ dnp_ngrp   6
+ kin_comp   1  1 -11    !Compostions that this set applies
+    move_bank   1   0.0     0.0     1.0     100.0
+    move_bank   1   5000.0  100.0   1.0     0.0
+    move_bank   2   0.0     228.0   1.0     100.0
+    move_bank   2   5000.0  100.0   1.0     228.0

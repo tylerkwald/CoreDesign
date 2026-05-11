@@ -1,4 +1,5 @@
       core_type    PWR
+      decay_heat   T
       transient    T
       depletion    T !T 1.0e-5
       tree_xs    T    6    T   F   F   F   T   F   T   F   F   T   T   T   T   F

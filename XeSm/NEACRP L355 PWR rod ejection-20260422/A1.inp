@@ -1,0 +1,33 @@
+!******************************************************************************
+CASEID A1               Neacrp Case A1
+!******************************************************************************
+CNTL
+      core_power   0.0001 0.0  !in %
+      bank_pos   0.0   0.   0. 228.   0.   0.   0. 228.
+      ppm    561.26
+      transient    F
+      TH_FDBK      T
+      
+!     search       ppm
+!                    input  iteration     planar                   adj
+!                     edit      table      power        pin       reac
+      print_opt          F          F          F          F          T
+!                     fdbk       flux     planar
+!                      rho    precurs       flux         Xe        T/H
+      print_opt          F          F          F          F          F
+
+!******************************************************************************
+PARAM
+! no parameters are specified, all defaults
+!      n_iters  100 10
+!******************************************************************************
+GEOM
+ file .\GEOM_QC
+!******************************************************************************
+TH
+ file .\TH_QC
+!******************************************************************************
+XSEC
+
+ file .\XSEC_NEACRP
+. 
