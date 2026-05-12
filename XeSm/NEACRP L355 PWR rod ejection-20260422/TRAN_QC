@@ -1,10 +1,12 @@
- time_step 172800 0.1 25 50 4990 1 5025 75
+ time_step 4990 0.1 25 60 1000 100
 
     theta       1.0 1.0 1.0
     conv_tr     1.0e-6  
     nlupd_tr    1   1   1   100
     eps_xsec    0.001
     expo_opt    F   F
+    
+    rst_freq    10000
 
     move_bank   1   0.0     0.0     1.0     100.0
     move_bank   1   5000.0  100.0   1.0     0.0

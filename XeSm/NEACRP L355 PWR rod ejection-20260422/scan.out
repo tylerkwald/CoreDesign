@@ -1,4 +1,5 @@
       transient    T
+      restart      T  .\A1xeRestart5000wRe.rst  2
       xe_sm        1 0
  geo_dim   9 9 18             !nasyx,nasyy,nz
  rad_conf

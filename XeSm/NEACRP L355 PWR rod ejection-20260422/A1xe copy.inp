@@ -1,0 +1,34 @@
+!******************************************************************************
+CASEID A1xeRestart50000wRe       Xe transient based on Neacrp Case A1
+!******************************************************************************
+CNTL
+      core_power  100. !in %
+      bank_pos   0.   228. 228.    228.   200.   200.   200.  228.
+      ppm    561.26
+      transient    T
+      th_fdbk      Td
+      restart      T  .\A1xeRestart5000wRe.rst  2
+      xe_sm        1 0 
+!                    input  iteration     planar                   adj
+!                     edit      table      power        pin       reac
+      print_opt          F          F          F          F          T
+!                     fdbk       flux     planar
+!                      rho    precurs       flux         Xe        T/H
+      print_opt          T          F          F          F          F
+
+!******************************************************************************
+PARAM
+       conv_ss 1.0e-6 1.0e-5 5.0e-4 1.0e-8          ! temperature conv. criteria should be small.
+!******************************************************************************
+GEOM
+       file .\GEOM_QC
+!******************************************************************************
+TH
+       file .\TH_QC
+!******************************************************************************
+XSEC
+       file .\XSEC_NEACRP_FISS
+!******************************************************************************
+TRAN
+       file .\TRAN_QC_copy
+. 
